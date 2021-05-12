@@ -18,6 +18,10 @@
 int timeout = 0;
 int finish = 0;
 
+int buffer_size = 1024;
+
+//Message * buffer;
+
 char *serverfifoname = NULL;
 int serverfifo = -1;		
 
@@ -29,11 +33,23 @@ enum oper{
     FAILD
 };
 
+typedef struct {
+    Message * buffer;
+    int read_index;
+    int write_index;
+    int full;
+}circular_buff;
+
 void alrm(int);
 int load_args(int argc, char** argv);
 void print_usage();
 int setup_sigalrm();
 void register_op(int i, int t, int res, enum oper oper);
+void * thread_producer(void* a);
+void write_to_buffer(Message * request);
+circular_buff * init_circ_buff(buffer_size);
+int write_to_buff(circular_buff * circ_buff, Message * message);
+int read_from_buff(circular_buff * circ_buff, Message * message);
 
 void * thread_producer(void* a){
     Message * request = malloc(sizeof(Message));
@@ -41,8 +57,10 @@ void * thread_producer(void* a){
     int res = task(request->tskload);
     request->tskres = res;
     register_op(request->tid, request->tskload, request->tskres, TSKEX);
+
 	pthread_exit(a);
 }
+
 
 
 int main(int argc, char** argv){
@@ -53,6 +71,8 @@ int main(int argc, char** argv){
     if(mkfifo(serverfifoname,PERM)) exit(2);
 
     alarm(timeout);
+
+    circular_buff * circ_buff = init_circ_buff();
 
     while ((serverfifo = open(serverfifoname, O_RDONLY)) < 0) {	// 1st time: keep blocking until client opens...
 		perror("[server] server, open serverfifo");
@@ -85,6 +105,7 @@ int main(int argc, char** argv){
 			if (finish)	// client timeout!
 				goto timetoclose;
 		}
+
         
     }
     goto timetoclose;
@@ -171,4 +192,41 @@ void register_op(int i, int t, int res, enum oper oper){
     default:
         break;
     }
+}
+
+
+circular_buff * init_circ_buff(buffer_size){
+    circular_buff * circ_buff = malloc(sizeof(circular_buff));
+    circ_buff->buffer = malloc(buffer_size*sizeof(Message));
+    circ_buff->read_index = -1;
+    circ_buff->write_index = 0;
+
+}
+
+int write_to_buff(circular_buff * circ_buff, Message * message){
+    if(circ_buff->read_index == -1)
+    {
+        circ_buff->read_index++;
+    }
+    else if(circ_buff->read_index == circ_buff->write_index)
+        return 1;
+    int write_index = circ_buff->write_index;
+    circ_buff->buffer[write_index] = *message;
+    
+    write_index++;
+    write_index = write_index%buffer_size;
+    circ_buff->write_index = write_index;
+    return 0;
+}
+
+int read_from_buff(circular_buff * circ_buff, Message * message){
+    if(circ_buff->read_index == circ_buff->write_index)
+        return 1;
+    int read_index = circ_buff->read_index;
+    circ_buff->buffer[read_index] = *message;
+    
+    read_index++;
+    read_index = read_index%buffer_size;
+    circ_buff->read_index = read_index;
+    return 0;
 }
