@@ -63,6 +63,8 @@ void * thread_producer(void* a){
     pthread_mutex_lock(&mut);
     write_to_buff(circ_buffer, request);
 	pthread_mutex_unlock(&mut);
+
+    free(request);
 	pthread_exit(a);
 }
 
@@ -123,7 +125,7 @@ timetoclose:
 	//terminate_blocked(getpid());
 	// 2 - assure that all private FIFOs are removed
 
-    //terminate_threads();
+    terminate_threads();
 
     close(serverfifo);
 
@@ -260,6 +262,8 @@ void terminate_threads(){
             int tid = atoi(entry->d_name);
 
             pthread_cancel(tid);
+
+            //pthread_kill(tid, SIGUSR1);
 
             printf("terminated tid: %d\n", tid);
         }
