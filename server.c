@@ -83,14 +83,12 @@ int main(int argc, char** argv){
 		perror("[server] server, open serverfifo");
 		if (finish)	// server timeout!
 			goto timetoclose;
-        printf("WHILE");
 	}
 
-	pthread_t tid;	// temporary, for any of the client threads
-
+	pthread_t tid[10000];	// temporary, for any of the client threads
+    int count = 0;
     while (!finish)
     {
-        printf("PID: %d", getpid());
 	    Message *request = malloc(sizeof(Message));
         int r;
         while((r = read(serverfifo,request,sizeof(Message))) <= 0){
@@ -104,12 +102,13 @@ int main(int argc, char** argv){
         }
 
         register_op(request->rid, request->tskload, request->tskres, RECVD);
-        while (pthread_create(&tid, NULL, thread_producer, request) != 0) {	// wait till a new thread can be created!
+        while (pthread_create(&tid[count], NULL, thread_producer, request) != 0) {	// wait till a new thread can be created!
 			perror("[server] server thread");
 			usleep(10000 + (rand() % 10000));
 			if (finish)	// client timeout!
 				goto timetoclose;
 		}
+        count++;
 
         read_from_buff(circ_buffer, request);
         
@@ -125,7 +124,7 @@ timetoclose:
 	//terminate_blocked(getpid());
 	// 2 - assure that all private FIFOs are removed
 
-    terminate_threads();
+    terminate_threads(tid, count);
 
     close(serverfifo);
 
@@ -209,8 +208,9 @@ void register_op(int i, int t, int res, enum oper oper){
 circular_buff * init_circ_buff(){
     circular_buff * circ_buff = malloc(sizeof(circular_buff));
     circ_buff->buffer = malloc(buffer_size*sizeof(Message));
-    circ_buff->read_index = -1;
+    circ_buff->read_index = 0;
     circ_buff->write_index = 0;
+    circ_buff->length = 0;
     return circ_buff;
 }
 
@@ -242,32 +242,10 @@ int read_from_buff(circular_buff * circ_buff, Message * message){
     return 0;
 }
 
-void terminate_threads(){
-    DIR *proc_dir;
-    {
-        char dirname[100];
-        snprintf(dirname, sizeof dirname, "/proc/%d/task", getpid());
-        proc_dir = opendir(dirname);
+void terminate_threads(pthread_t * tid, int n){
+    for(int i = 0; i < n; i++){
+        pthread_cancel(tid[i]);
     }
 
-    if (proc_dir)
-    {
-        /* /proc available, iterate through tasks... */
-        struct dirent *entry;
-        while ((entry = readdir(proc_dir)) != NULL)
-        {
-            if(entry->d_name[0] == '.')
-                continue;
-
-            int tid = atoi(entry->d_name);
-
-            pthread_cancel(tid);
-
-            //pthread_kill(tid, SIGUSR1);
-
-            printf("terminated tid: %d\n", tid);
-        }
-
-        closedir(proc_dir);
-    }
 }
+
