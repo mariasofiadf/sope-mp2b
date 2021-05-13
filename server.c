@@ -10,6 +10,7 @@
 #include <pthread.h>
 #include <signal.h>
 #include <dirent.h>
+#include <semaphore.h>
 #include "common.h"
 #include "lib.h"
 
@@ -33,7 +34,9 @@ int buffer_size = 1024;
 
 pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 char *serverfifoname = NULL;
-int serverfifo = -1;		
+int serverfifo = -1;
+
+sem_t sem;
 
 enum oper{
     RECVD,
@@ -65,7 +68,7 @@ void * thread_producer(void* a){
     printf("Client PID: %d \t Client TID: %ld\n", request->pid, request->tid);
 
     pthread_mutex_lock(&mut);
-    write_to_buff(circ_buffer, request);
+    while(write_to_buff(circ_buffer, request));
 	pthread_mutex_unlock(&mut);
 
     //free(request);
@@ -86,6 +89,8 @@ int main(int argc, char** argv){
     char clientfifoname[CONFORTSIZE];
 
 	int clientfifo = -1;
+
+    sem_init(&sem,0,1);
 
     while ((serverfifo = open(serverfifoname, O_RDONLY)) < 0) {	// 1st time: keep blocking until client opens...
 		perror("[server] server, open serverfifo");
@@ -118,20 +123,19 @@ int main(int argc, char** argv){
 		}
         count++;
 
-        read_from_buff(circ_buffer, request);
+        while(read_from_buff(circ_buffer, request));
 
         sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
 
-        if((clientfifo = open(clientfifoname, O_WRONLY)) < 0){
-            perror("[server] open clientfifo");
-            fprintf(stderr, "%s\n", clientfifoname);
-        }
-        else{
-            write(clientfifo, request, sizeof(Message));
-            
-            close(clientfifo);
-        }
+        // while((clientfifo = open(clientfifoname, O_WRONLY)) < 0){
+        //     perror("[server] open clientfifo");
+        //     fprintf(stderr, "%s\n", clientfifoname);
+        // }
 
+        // write(clientfifo, request, sizeof(Message));
+            
+        // close(clientfifo);
+        
 
         // sprintf(clientfifoname, "/tmp/%d.%ld", request->pid, request->tid);
         // clientfifo = -1;
@@ -143,17 +147,17 @@ int main(int argc, char** argv){
         // close(clientfifo);
 
 
-        // while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {	// 1st time: keep blocking until client opens...
-		//     perror("[server] open clientfifo");
-        //     fprintf(stderr, "%s\n", clientfifoname);
-		//     if (finish)	// server timeout!
-		// 	goto timetoclose;
-	    // }
+        while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {	// 1st time: keep blocking until client opens...
+		    perror("[server] open clientfifo");
+            fprintf(stderr, "%s\n", clientfifoname);
+		    if (finish)	// server timeout!
+			goto timetoclose;
+	    }
 
-        // while((r = write(clientfifo,request,sizeof(Message))) <= 0){
-        //     if(finish)
-        //         goto timetoclose;
-        // }
+        while((r = write(clientfifo,request,sizeof(Message))) <= 0){
+            if(finish)
+                goto timetoclose;
+        }
 
 
         // if (access(clientfifoname, F_OK) < 0) { // if client removed private FIFO
