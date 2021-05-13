@@ -66,13 +66,11 @@ void * thread_producer(void* a){
     request->tskres = res;
     register_op(request->rid, request->tskload, request->tskres, TSKEX);
     printf("Client PID: %d \t Client TID: %ld\n", request->pid, request->tid);
-
-    pthread_mutex_lock(&mut);
-    while(write_to_buff(circ_buffer, request));
-	pthread_mutex_unlock(&mut);
-
+    sem_wait(&sem);
+    while (write_to_buff(circ_buffer, request) && !finish);    
+    sem_post(&sem);
     //free(request);
-	pthread_exit(a);
+    pthread_exit(a);
 }
 
 int main(int argc, char** argv){
@@ -123,7 +121,10 @@ int main(int argc, char** argv){
 		}
         count++;
 
-        while(read_from_buff(circ_buffer, request));
+        while(read_from_buff(circ_buffer, request)){
+            if (finish)	// server timeout!
+			    goto timetoclose;
+        };
 
         sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
 
@@ -294,8 +295,9 @@ circular_buff * init_circ_buff(){
 }
 
 int write_to_buff(circular_buff * circ_buff, Message * message){
-    if(circ_buff->length == buffer_size)
+    if(circ_buff->length == buffer_size){
         return 1;
+    }
     
     int write_index = circ_buff->write_index;
     circ_buff->buffer[write_index] = *message;
