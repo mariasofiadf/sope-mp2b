@@ -14,6 +14,8 @@
 #include "lib.h"
 
 #define PERM 0666
+#define CONFORTSIZE	1024
+
 
 int timeout = 0;
 int finish = 0;
@@ -52,6 +54,7 @@ circular_buff * init_circ_buff();
 int write_to_buff(circular_buff * circ_buff, Message * message);
 int read_from_buff(circular_buff * circ_buff, Message * message);
 void terminate_threads();
+void send_to_client(Message * message);
 
 void * thread_producer(void* a){
     Message * request = malloc(sizeof(Message));
@@ -59,12 +62,13 @@ void * thread_producer(void* a){
     int res = task(request->tskload);
     request->tskres = res;
     register_op(request->rid, request->tskload, request->tskres, TSKEX);
+    printf("Client PID: %d \t Client TID: %ld\n", request->pid, request->tid);
 
     pthread_mutex_lock(&mut);
     write_to_buff(circ_buffer, request);
 	pthread_mutex_unlock(&mut);
 
-    free(request);
+    //free(request);
 	pthread_exit(a);
 }
 
@@ -78,6 +82,10 @@ int main(int argc, char** argv){
     alarm(timeout);
 
     circ_buffer = init_circ_buff();
+
+    char clientfifoname[CONFORTSIZE];
+
+	int clientfifo = -1;
 
     while ((serverfifo = open(serverfifoname, O_RDONLY)) < 0) {	// 1st time: keep blocking until client opens...
 		perror("[server] server, open serverfifo");
@@ -111,8 +119,65 @@ int main(int argc, char** argv){
         count++;
 
         read_from_buff(circ_buffer, request);
-        
-        register_op(request->rid, request->tskload, request->tskres, TSKDN);
+
+        sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
+
+        if((clientfifo = open(clientfifoname, O_WRONLY)) < 0){
+            perror("[server] open clientfifo");
+            fprintf(stderr, "%s\n", clientfifoname);
+        }
+        else{
+            write(clientfifo, request, sizeof(Message));
+            
+            close(clientfifo);
+        }
+
+
+        // sprintf(clientfifoname, "/tmp/%d.%ld", request->pid, request->tid);
+        // clientfifo = -1;
+
+        // clientfifo = open(clientfifoname, O_WRONLY);
+
+        // write(clientfifo, request, sizeof(Message));
+
+        // close(clientfifo);
+
+
+        // while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {	// 1st time: keep blocking until client opens...
+		//     perror("[server] open clientfifo");
+        //     fprintf(stderr, "%s\n", clientfifoname);
+		//     if (finish)	// server timeout!
+		// 	goto timetoclose;
+	    // }
+
+        // while((r = write(clientfifo,request,sizeof(Message))) <= 0){
+        //     if(finish)
+        //         goto timetoclose;
+        // }
+
+
+        // if (access(clientfifoname, F_OK) < 0) { // if client removed private FIFO
+		// 	close (clientfifo);
+		// 	do { // busy wait until client re-opens or server times out
+		// 		if (finish)	// client timeout!
+		// 			goto timetoclose;
+		// 	} while (access(clientfifoname, F_OK) < 0);	// busy wait until clients re-opens or server times out
+		// 	// client should have re-opened
+		// 	if ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {	// keep blocking until client opens... OR intr (e.g. alarm) occurs
+		// 		perror("[server] open clientfifo");
+		// 		goto timetoclose;	// could be error or timeout
+		// 	} // open(serverfifoname)
+		// }
+        // else{
+        //     clientfifo = open(clientfifoname, O_WRONLY);
+
+        //     write(clientfifo, request, sizeof(Message));
+            
+        //     register_op(request->rid, request->tskload, request->tskres, TSKDN);
+
+        //     close(clientfifo);
+        // }
+
     }
     goto timetoclose;
     
@@ -137,15 +202,25 @@ timetoclose:
 }
 
 int load_args(int argc, char** argv){
-    if(argc != 4 || strcmp(argv[1], "-t")){
+    if(argc == 4 && !strcmp(argv[1], "-t")){
+        timeout = atoi(argv[2]);
+
+        serverfifoname = malloc(sizeof(argv[3]));
+        serverfifoname = argv[3];
+    }
+    else if(argc == 6 && !strcmp(argv[1], "-t") && !strcmp(argv[3], "-l")){
+        timeout = atoi(argv[2]);
+
+        serverfifoname = malloc(sizeof(argv[5]));
+        serverfifoname = argv[5];
+
+        buffer_size = atoi(argv[4]);
+    }
+    else{
         print_usage();
         return 1;
     }
 
-    timeout = atoi(argv[2]);
-
-    serverfifoname = malloc(sizeof(argv[3]));
-    serverfifoname = argv[3];
 
     return 0;
 }
@@ -246,6 +321,6 @@ void terminate_threads(pthread_t * tid, int n){
     for(int i = 0; i < n; i++){
         pthread_cancel(tid[i]);
     }
-
 }
+
 
