@@ -65,7 +65,7 @@ void * thread_producer(void* a){
     int res = task(request->tskload);
     request->tskres = res;
     register_op(request->rid, request->tskload, request->tskres, TSKEX);
-    printf("Client PID: %d \t Client TID: %ld\n", request->pid, request->tid);
+
     sem_wait(&sem);
     while (write_to_buff(circ_buffer, request) && !finish);    
     sem_post(&sem);
@@ -128,26 +128,6 @@ int main(int argc, char** argv){
 
         sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
 
-        // while((clientfifo = open(clientfifoname, O_WRONLY)) < 0){
-        //     perror("[server] open clientfifo");
-        //     fprintf(stderr, "%s\n", clientfifoname);
-        // }
-
-        // write(clientfifo, request, sizeof(Message));
-            
-        // close(clientfifo);
-        
-
-        // sprintf(clientfifoname, "/tmp/%d.%ld", request->pid, request->tid);
-        // clientfifo = -1;
-
-        // clientfifo = open(clientfifoname, O_WRONLY);
-
-        // write(clientfifo, request, sizeof(Message));
-
-        // close(clientfifo);
-
-
         while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {	// 1st time: keep blocking until client opens...
 		    perror("[server] open clientfifo");
             fprintf(stderr, "%s\n", clientfifoname);
@@ -160,28 +140,7 @@ int main(int argc, char** argv){
                 goto timetoclose;
         }
 
-
-        // if (access(clientfifoname, F_OK) < 0) { // if client removed private FIFO
-		// 	close (clientfifo);
-		// 	do { // busy wait until client re-opens or server times out
-		// 		if (finish)	// client timeout!
-		// 			goto timetoclose;
-		// 	} while (access(clientfifoname, F_OK) < 0);	// busy wait until clients re-opens or server times out
-		// 	// client should have re-opened
-		// 	if ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {	// keep blocking until client opens... OR intr (e.g. alarm) occurs
-		// 		perror("[server] open clientfifo");
-		// 		goto timetoclose;	// could be error or timeout
-		// 	} // open(serverfifoname)
-		// }
-        // else{
-        //     clientfifo = open(clientfifoname, O_WRONLY);
-
-        //     write(clientfifo, request, sizeof(Message));
-            
-        //     register_op(request->rid, request->tskload, request->tskres, TSKDN);
-
-        //     close(clientfifo);
-        // }
+        register_op(request->tid, request->tskload, request->tskres, TSKDN);
 
     }
     goto timetoclose;
@@ -193,6 +152,33 @@ timetoclose:
 		// como saber os thr_ids? percorrendo /tmp/[pid].* !
 	//terminate_blocked(getpid());
 	// 2 - assure that all private FIFOs are removed
+
+    Message *request = malloc(sizeof(Message));
+
+    while(read_from_buff(circ_buffer, request) == 0){
+        
+        register_op(request->tid, request->tskload, -1, TOOLATE);
+    };
+
+    int r;
+    while(1){
+        while((r=read(serverfifo, request, sizeof(Message))) < 0);
+        if(r == 0) break;
+
+        register_op(request->rid, request->tskload, request->tskres, RECVD);
+
+        sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
+
+        if((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {	// 1st time: keep blocking until client opens...
+		    perror("[server] open clientfifo");
+            fprintf(stderr, "%s\n", clientfifoname);
+	    }
+
+        write(clientfifo,request,sizeof(Message));
+
+        register_op(request->tid, request->tskload, -1, TOOLATE);
+    }
+    free(request);
 
     terminate_threads(tid, count);
 
