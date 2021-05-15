@@ -17,6 +17,7 @@
 #define PERM 0666
 #define CONFORTSIZE	1024
 
+
 int timeout = 0;
 int finish = 0;
 
@@ -28,7 +29,10 @@ typedef struct {
 }circular_buff;
 
 circular_buff * circ_buffer;
-int buffer_size = 100;
+int buffer_size = 1024;
+
+Message buffer[1000]; 
+
 
 pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 char *serverfifoname = NULL;
@@ -44,18 +48,18 @@ enum oper{
     FAILD
 };
 
+
+void alrm(int);
 int load_args(int argc, char** argv);
 void print_usage();
-void alrm(int);
 int setup_sigalrm();
 void register_op(int i, int t, int res, enum oper oper);
-void send_to_client(Message * message);
 void * thread_producer(void* a);
-void terminate_threads();
 circular_buff * init_circ_buff();
 int write_to_buff(circular_buff * circ_buff, Message * message);
 int read_from_buff(circular_buff * circ_buff, Message * message);
-
+void terminate_threads();
+void send_to_client(Message * message);
 
 void * thread_producer(void* a){
     Message * request = malloc(sizeof(Message));
@@ -64,77 +68,15 @@ void * thread_producer(void* a){
     request->tskres = res;
     register_op(request->rid, request->tskload, request->tskres, TSKEX);
 
-    sem_wait(&sem);
-    while (write_to_buff(circ_buffer, request) && !finish);
-    sem_post(&sem);
+    buffer[request->rid] = *request;
+    // sem_wait(&sem);
+    // while (write_to_buff(circ_buffer, request) && !finish);    
+    // sem_post(&sem);
     //free(request);
     pthread_exit(a);
 }
 
-void * thread_consumer(void *a){
-
-	Message *request = malloc(sizeof(Message));
-
-    char clientfifoname[CONFORTSIZE];
-
-	int clientfifo = -1;
-
-    while(!finish || circ_buffer->length != 0)
-    {
-        clientfifo = -1;
-
-        sem_wait(&sem);
-        while(read_from_buff(circ_buffer, request));
-        sem_post(&sem);
-
-        sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
-
-        fprintf(stderr, "[server] consumer thread opening %s\n", clientfifoname);
-        while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {	// 1st time: keep blocking until client opens...
-            register_op(request->tid, request->tskload, request->tskres, FAILD);
-		    perror("[server] open clientfifo");
-            fprintf(stderr, "%s\n", clientfifoname);
-		    if (finish)	// server timeout!
-            {
-                register_op(request->tid, request->tskload, request->tskres, FAILD);
-			    break;
-            }
-	    }
-
-        fprintf(stderr, "[server] opened %s\n", clientfifoname);
-
-
-        if(finish)
-            request->tskres = -1;
-
-        int w = 0;
-        while((w =write(clientfifo,request,sizeof(Message))) <= 0){
-            if(finish)
-                break;
-        }
-
-
-        if(w < 0)
-            register_op(request->tid, request->tskload, request->tskres, FAILD);
-        else if(!finish)
-            register_op(request->tid, request->tskload, request->tskres, TSKDN);
-        else
-            register_op(request->tid, request->tskload, -1, TOOLATE);
-
-    }
-    
-    free(request);
-
-    fprintf(stderr, "[server] consumer thread stoped\n");
-
-    pthread_exit(a);
-}
-
-
 int main(int argc, char** argv){
-
-    //Initiate variables
-
     if(load_args(argc, argv)) return 1;
 
     if(setup_sigalrm()) exit(2);
@@ -145,32 +87,23 @@ int main(int argc, char** argv){
 
     circ_buffer = init_circ_buff();
 
+    char clientfifoname[CONFORTSIZE];
+
+	int clientfifo = -1;
+
     sem_init(&sem,0,1);
 
-
-	pthread_t tidd;
-
-    while (pthread_create(&tidd, NULL, thread_consumer, NULL) != 0) {	// wait till a new thread can be created!
-        perror("[server] server thread");
-        usleep(10000 + (rand() % 10000));
-        if (finish)	// server timeout!
-            goto timetoclose;
-    }
-    usleep(500);
-
-    //Open server fifo
     while ((serverfifo = open(serverfifoname, O_RDONLY)) < 0) {	// 1st time: keep blocking until client opens...
 		perror("[server] server, open serverfifo");
 		if (finish)	// server timeout!
 			goto timetoclose;
 	}
 
-	pthread_t tid[10000];
+	pthread_t tid[10000];	// temporary, for any of the client threads
     int count = 0;
-
-    while(!finish){
-
-        Message *request = malloc(sizeof(Message));
+    while (!finish)
+    {
+	    Message *request = malloc(sizeof(Message));
         int r;
         while((r = read(serverfifo,request,sizeof(Message))) <= 0){
             if(r == 0){
@@ -184,18 +117,84 @@ int main(int argc, char** argv){
 
         register_op(request->rid, request->tskload, request->tskres, RECVD);
 
-        while (pthread_create(&tid[count], NULL, thread_producer, request) != 0) {	// wait till a new thread can be created!
-            perror("[server] server thread");
-            usleep(10000 + (rand() % 10000));
-            if (finish)	// server timeout!
+        if(!finish){
+
+            while (pthread_create(&tid[count], NULL, thread_producer, request) != 0) {	// wait till a new thread can be created!
+                perror("[server] server thread");
+                usleep(10000 + (rand() % 10000));
+                if (finish)	// client timeout!
+                    goto timetoclose;
+            }
+            count++;
+
+            while(read_from_buff(circ_buffer, request)){
+                if (finish)	// server timeout!
+                    goto timetoclose;
+            };
+        }
+        else{
+            request->tskres = -1;
+        }
+
+        sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
+
+        while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {	// 1st time: keep blocking until client opens...
+            register_op(request->tid, request->tskload, request->tskres, FAILD);
+		    perror("[server] open clientfifo");
+            fprintf(stderr, "%s\n", clientfifoname);
+		    if (finish)	// server timeout!
+			goto timetoclose;
+	    }
+
+        while((r = write(clientfifo,request,sizeof(Message))) <= 0){
+            if(finish)
                 goto timetoclose;
         }
 
+        if(!finish){
+            register_op(request->tid, request->tskload, request->tskres, TSKDN);
+        }
+        else{
+            register_op(request->tid, request->tskload, request->tskres, TOOLATE);
+        }
+
     }
+    goto timetoclose;
+    
 timetoclose:
     fprintf(stderr, "[server] stopped receiving requests\n");
+	// strategy: 1 2
+	// 1 - break all blocked threads with pthread_cancel() and assure GAVEUP messages
+		// como saber os thr_ids? percorrendo /tmp/[pid].* !
+	//terminate_blocked(getpid());
+	// 2 - assure that all private FIFOs are removed
 
-    pthread_join(tidd, NULL);
+    Message *request = malloc(sizeof(Message));
+
+    while(read_from_buff(circ_buffer, request) == 0){
+        
+        register_op(request->tid, request->tskload, -1, TOOLATE);
+    };
+
+    int r;
+    while(1){
+        while((r=read(serverfifo, request, sizeof(Message))) < 0);
+        if(r == 0) break;
+
+        register_op(request->rid, request->tskload, request->tskres, RECVD);
+
+        sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
+
+        if((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {	// 1st time: keep blocking until client opens...
+		    perror("[server] open clientfifo");
+            fprintf(stderr, "%s\n", clientfifoname);
+	    }
+
+        write(clientfifo,request,sizeof(Message));
+
+        register_op(request->tid, request->tskload, -1, TOOLATE);
+    }
+    free(request);
 
     terminate_threads(tid, count);
 
@@ -205,11 +204,8 @@ timetoclose:
 
 	fprintf(stderr, "[server] main terminating\n");
 
-    sleep(5);
-
     free(circ_buffer);
 	pthread_exit(NULL);
-    return 0;
 }
 
 int load_args(int argc, char** argv){
@@ -283,7 +279,7 @@ void register_op(int i, int t, int res, enum oper oper){
         printf(" ; 2LATE \n");
         break;
     case FAILD:
-        printf(" ; FAILD \n");
+        printf("; FAILD \n");
         break;
     default:
         break;
@@ -312,15 +308,12 @@ int write_to_buff(circular_buff * circ_buff, Message * message){
     write_index = write_index%buffer_size;
     circ_buff->write_index = write_index;
     circ_buff->length++;
-
     return 0;
 }
 
 int read_from_buff(circular_buff * circ_buff, Message * message){
-    if(circ_buff->length == 0){
+    if(circ_buff->length == 0)
         return 1;
-    }
-
     
     int read_index = circ_buff->read_index;
     *message = circ_buff->buffer[read_index];
@@ -329,7 +322,6 @@ int read_from_buff(circular_buff * circ_buff, Message * message){
     read_index = read_index%buffer_size;
     circ_buff->read_index = read_index;
     circ_buff->length--;
-
     return 0;
 }
 
@@ -338,4 +330,5 @@ void terminate_threads(pthread_t * tid, int n){
         pthread_cancel(tid[i]);
     }
 }
+
 
