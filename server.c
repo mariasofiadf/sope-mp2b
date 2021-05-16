@@ -65,6 +65,8 @@ int write_count = 0;
 int read_count = 0;
 
 void * thread_producer(void* a){
+
+    fprintf(stderr,"[server] producer thread starting: %ld\n", pthread_self());
     Message * request = malloc(sizeof(Message));
     request = (Message *) a;
     if(!finish){
@@ -72,12 +74,11 @@ void * thread_producer(void* a){
         request->tskres = res;
         register_op(request->rid, request->tskload, request->tskres, TSKEX);
     }
+    else{
+        request->tskres = -1;
+    }
 
     write_to_buff(circ_buffer, request);
-
-    // pthread_mutex_lock(&mut);
-    // write_count++;
-	// pthread_mutex_unlock(&mut);
 
     free(request);
 
@@ -113,9 +114,7 @@ void * thread_consumer(void *a){
             continue;
         }
         int w = 0;
-        if(finish){
-            request->tskres = -1;
-        }
+
         while((w = write(clientfifo,request,sizeof(Message))) <= 0){
             if(finish)
                 break;
@@ -123,7 +122,7 @@ void * thread_consumer(void *a){
 
         close(clientfifo);
 
-        if(!finish)
+        if(request->tskres != -1)
             register_op(request->tid, request->tskload, request->tskres, TSKDN);
         else
             register_op(request->tid, request->tskload, -1, TOOLATE);
