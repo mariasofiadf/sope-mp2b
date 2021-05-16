@@ -19,6 +19,7 @@
 
 int timeout = 0;
 int finish = 0;
+int serverfifoclosed = 0;
 
 typedef struct {
     Message * buffer;
@@ -47,7 +48,9 @@ enum oper{
 int load_args(int argc, char** argv);
 void print_usage();
 void alrm(int);
+void pips(int signo);
 int setup_sigalrm();
+int setup_sigpips();
 void register_op(int i, int t, int res, enum oper oper);
 void send_to_client(Message * message);
 void * thread_producer(void* a);
@@ -70,9 +73,10 @@ void * thread_producer(void* a){
 
     write_to_buff(circ_buffer, request);
 
-    // pthread_mutex_lock(&mut);
-    // write_count++;
-    // pthread_mutex_unlock(&mut);
+    pthread_mutex_lock(&mut);
+    write_count++;
+	pthread_mutex_unlock(&mut);
+
     free(request);
 
     fprintf(stderr,"[server] producer thread terminating: %ld\n", pthread_self());
@@ -107,6 +111,9 @@ void * thread_consumer(void *a){
             continue;
         }
         int w = 0;
+        if(finish){
+            request->tskres = -1;
+        }
         while((w = write(clientfifo,request,sizeof(Message))) <= 0){
             if(finish)
                 break;
@@ -138,6 +145,8 @@ int main(int argc, char** argv){
 
     if(setup_sigalrm()) exit(2);
 
+    if(setup_sigpips()) exit(2);
+
     if(mkfifo(serverfifoname,PERM)) exit(2);
 
     alarm(timeout);
@@ -166,7 +175,7 @@ int main(int argc, char** argv){
 	pthread_t tid[10000];
     int count = 0;
 
-    while(!finish){
+    while(!finish || !serverfifoclosed){
 
         Message *request = malloc(sizeof(Message));
         int r;
@@ -198,7 +207,7 @@ timetoclose:
 
     terminate_threads(tid, count);
 
-    sleep(5);
+    sleep(3);
 
     pthread_cancel(tidd);
 
@@ -261,11 +270,29 @@ int setup_sigalrm(){
     return 0;
 }
 
+int setup_sigpips(){
+    struct sigaction new2;
+    sigset_t smask;
+    sigemptyset(&smask);
+	new2.sa_handler = pips;
+	new2.sa_mask = smask;
+	new2.sa_flags = 0;	// usually enough
+	if(sigaction(SIGPIPE, &new2, NULL) == -1) {
+		perror ("sigaction (SIGPIPE)");
+		return 1;
+	}
+    return 0;
+}
+
 void alrm(int signo) {
 	finish = 1;
 	fprintf(stderr, "[server] timeout reached: %ld %ld\n", time(NULL), (unsigned long) pthread_self());
 } // alrm()
 
+void pips(int signo) {
+	serverfifoclosed = 1;
+	fprintf(stderr, "[client] server pipe closed\n");
+} // pips()
 
 void register_op(int i, int t, int res, enum oper oper){
     printf("%ld ; %d ; %d ; %d ; %ld ; %d", time(NULL), i, t, getpid(), pthread_self(), res);
