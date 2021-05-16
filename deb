@@ -1,0 +1,1096 @@
+reader_sem_val: 0
+1621172913 ; 0 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; 1 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; 2 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; 3 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -820812032 ; 4 ; 45240 ; 140468457854720 ; 10 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 4 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; 5 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -837597440 ; 4 ; 45240 ; 140468457854720 ; 20 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 6 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -862775552 ; 1 ; 45240 ; 140468457854720 ; 30 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 7 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -845990144 ; 6 ; 45240 ; 140468457854720 ; 40 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -829204736 ; 9 ; 45240 ; 140468457854720 ; 50 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 8 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; 9 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; -854382848 ; 6 ; 45240 ; 140468457854720 ; 60 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 10 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; 11 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; 12 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1216354560 ; 7 ; 45240 ; 140468457854720 ; 70 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1207961856 ; 9 ; 45240 ; 140468457854720 ; 80 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 13 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1258318080 ; 2 ; 45240 ; 140468457854720 ; 90 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 14 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1249925376 ; 4 ; 45240 ; 140468457854720 ; 100 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1224747264 ; 8 ; 45240 ; 140468457854720 ; 110 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1233139968 ; 7 ; 45240 ; 140468457854720 ; 120 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 15 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1241532672 ; 8 ; 45240 ; 140468457854720 ; 130 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 16 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; 17 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1358964992 ; 3 ; 45240 ; 140468457854720 ; 140 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 18 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1342179584 ; 7 ; 45240 ; 140468457854720 ; 150 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1350572288 ; 6 ; 45240 ; 140468457854720 ; 160 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 19 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1375750400 ; 3 ; 45240 ; 140468457854720 ; 170 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 20 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; 21 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; 22 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1476397312 ; 2 ; 45240 ; 140468457854720 ; 180 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1367357696 ; 9 ; 45240 ; 140468457854720 ; 190 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 23 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; 24 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1392535808 ; 7 ; 45240 ; 140468457854720 ; 200 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1384143104 ; 9 ; 45240 ; 140468457854720 ; 210 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 25 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1484790016 ; 6 ; 45240 ; 140468457854720 ; 220 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1501575424 ; 3 ; 45240 ; 140468457854720 ; 230 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172913 ; -1509968128 ; 2 ; 45240 ; 140468457854720 ; 240 ; TSKDN 
+reader_sem_val: 0
+1621172913 ; 26 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172913 ; 27 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1493182720 ; 8 ; 45240 ; 140468457854720 ; 250 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 28 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+1621172914 ; -1518360832 ; 4 ; 45240 ; 140468457854720 ; 260 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1526753536 ; 3 ; 45240 ; 140468457854720 ; 270 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 29 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+1621172914 ; -1535146240 ; 4 ; 45240 ; 140468457854720 ; 280 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+1621172914 ; 30 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1543538944 ; 3 ; 45240 ; 140468457854720 ; 290 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 31 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1560324352 ; 1 ; 45240 ; 140468457854720 ; 300 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 32 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1551931648 ; 5 ; 45240 ; 140468457854720 ; 310 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 33 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1568717056 ; 3 ; 45240 ; 140468457854720 ; 320 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 34 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1585502464 ; 1 ; 45240 ; 140468457854720 ; 330 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 35 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 36 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1577109760 ; 6 ; 45240 ; 140468457854720 ; 340 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 37 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1593895168 ; 6 ; 45240 ; 140468457854720 ; 350 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 38 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1602287872 ; 5 ; 45240 ; 140468457854720 ; 360 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 39 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 40 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1619073280 ; 5 ; 45240 ; 140468457854720 ; 370 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 41 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1635858688 ; 2 ; 45240 ; 140468457854720 ; 380 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1610680576 ; 9 ; 45240 ; 140468457854720 ; 390 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 42 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 43 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+1621172914 ; -1627465984 ; 8 ; 45240 ; 140468457854720 ; 400 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+1621172914 ; 44 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1644251392 ; 6 ; 45240 ; 140468457854720 ; 410 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1661036800 ; 3 ; 45240 ; 140468457854720 ; 420 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 45 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 46 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1652644096 ; 9 ; 45240 ; 140468457854720 ; 430 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 47 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 48 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1669429504 ; 8 ; 45240 ; 140468457854720 ; 440 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 49 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 50 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1711393024 ; 2 ; 45240 ; 140468457854720 ; 450 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1677822208 ; 9 ; 45240 ; 140468457854720 ; 460 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1694607616 ; 6 ; 45240 ; 140468457854720 ; 470 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 51 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1686214912 ; 8 ; 45240 ; 140468457854720 ; 480 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1728178432 ; 2 ; 45240 ; 140468457854720 ; 490 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 52 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1703000320 ; 7 ; 45240 ; 140468457854720 ; 500 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1736571136 ; 2 ; 45240 ; 140468457854720 ; 510 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 53 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1744963840 ; 2 ; 45240 ; 140468457854720 ; 520 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 54 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 55 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1719785728 ; 9 ; 45240 ; 140468457854720 ; 530 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 56 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1761749248 ; 3 ; 45240 ; 140468457854720 ; 540 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 57 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 58 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1753356544 ; 7 ; 45240 ; 140468457854720 ; 550 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1786927360 ; 2 ; 45240 ; 140468457854720 ; 560 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 59 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1778534656 ; 4 ; 45240 ; 140468457854720 ; 570 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 60 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 61 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1770141952 ; 8 ; 45240 ; 140468457854720 ; 580 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 62 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1795320064 ; 6 ; 45240 ; 140468457854720 ; 590 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 63 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 64 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1803712768 ; 7 ; 45240 ; 140468457854720 ; 600 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1812105472 ; 6 ; 45240 ; 140468457854720 ; 610 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 65 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1820498176 ; 6 ; 45240 ; 140468457854720 ; 620 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1828890880 ; 5 ; 45240 ; 140468457854720 ; 630 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 66 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 67 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1862461696 ; 1 ; 45240 ; 140468457854720 ; 640 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 68 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 69 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1837283584 ; 9 ; 45240 ; 140468457854720 ; 650 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 70 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1845676288 ; 8 ; 45240 ; 140468457854720 ; 660 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 71 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1879247104 ; 4 ; 45240 ; 140468457854720 ; 670 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1854068992 ; 9 ; 45240 ; 140468457854720 ; 680 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1896032512 ; 2 ; 45240 ; 140468457854720 ; 690 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 72 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1870854400 ; 8 ; 45240 ; 140468457854720 ; 700 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 73 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1912817920 ; 1 ; 45240 ; 140468457854720 ; 710 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 74 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1887639808 ; 7 ; 45240 ; 140468457854720 ; 720 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 75 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 76 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 77 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1904425216 ; 9 ; 45240 ; 140468457854720 ; 730 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1921210624 ; 7 ; 45240 ; 140468457854720 ; 740 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1929603328 ; 6 ; 45240 ; 140468457854720 ; 750 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 78 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+1621172914 ; -1954781440 ; 2 ; 45240 ; 140468457854720 ; 760 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+1621172914 ; 79 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 80 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 81 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1937996032 ; 9 ; 45240 ; 140468457854720 ; 770 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1963174144 ; 4 ; 45240 ; 140468457854720 ; 780 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1946388736 ; 8 ; 45240 ; 140468457854720 ; 790 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 82 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 83 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1971566848 ; 6 ; 45240 ; 140468457854720 ; 800 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1996744960 ; 2 ; 45240 ; 140468457854720 ; 810 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 84 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1979959552 ; 6 ; 45240 ; 140468457854720 ; 820 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 85 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -2005137664 ; 4 ; 45240 ; 140468457854720 ; 830 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 86 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -1988352256 ; 8 ; 45240 ; 140468457854720 ; 840 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 87 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 88 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172914 ; 89 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -2047101184 ; 1 ; 45240 ; 140468457854720 ; 850 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -2030315776 ; 4 ; 45240 ; 140468457854720 ; 860 ; TSKDN 
+reader_sem_val: 0
+1621172914 ; 90 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172914 ; -2038708480 ; 4 ; 45240 ; 140468457854720 ; 870 ; TSKDN 
+reader_sem_val: 0
+[server] reading from buffer
+1621172914 ; -2013530368 ; 9 ; 45240 ; 140468457854720 ; 880 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+1621172915 ; 91 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2021923072 ; 9 ; 45240 ; 140468457854720 ; 890 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 92 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2063886592 ; 3 ; 45240 ; 140468457854720 ; 900 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2055493888 ; 5 ; 45240 ; 140468457854720 ; 910 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 93 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 94 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 95 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2072279296 ; 6 ; 45240 ; 140468457854720 ; 920 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2089064704 ; 3 ; 45240 ; 140468457854720 ; 930 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 96 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 97 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2080672000 ; 7 ; 45240 ; 140468457854720 ; 940 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 98 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2097457408 ; 7 ; 45240 ; 140468457854720 ; 950 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 99 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 100 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2131028224 ; 3 ; 45240 ; 140468457854720 ; 960 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2122635520 ; 5 ; 45240 ; 140468457854720 ; 970 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2105850112 ; 9 ; 45240 ; 140468457854720 ; 980 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 101 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2114242816 ; 8 ; 45240 ; 140468457854720 ; 990 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 102 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; -2139420928 ; 5 ; 45240 ; 140468457854720 ; 1000 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 103 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 104 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+1621172915 ; 2121975552 ; 1 ; 45240 ; 140468457854720 ; 1010 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+1621172915 ; 105 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+[server] writing to buffer
+1621172915 ; 2130368256 ; 4 ; 45240 ; 140468457854720 ; 1020 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2147153664 ; 8 ; 45240 ; 140468457854720 ; 1030 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 106 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2138760960 ; 8 ; 45240 ; 140468457854720 ; 1040 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 107 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 108 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2088404736 ; 1 ; 45240 ; 140468457854720 ; 1050 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 109 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2105190144 ; 5 ; 45240 ; 140468457854720 ; 1060 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2113582848 ; 7 ; 45240 ; 140468457854720 ; 1070 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 110 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 111 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+[server] writing to buffer
+1621172915 ; 2071619328 ; 4 ; 45240 ; 140468457854720 ; 1080 ; TSKDN 
+reader_sem_val: 1
+[server] reading from buffer
+1621172915 ; 2096797440 ; 8 ; 45240 ; 140468457854720 ; 1090 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2080012032 ; 5 ; 45240 ; 140468457854720 ; 1100 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 112 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2054833920 ; 1 ; 45240 ; 140468457854720 ; 1110 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 113 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 114 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 115 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2038048512 ; 3 ; 45240 ; 140468457854720 ; 1120 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2063226624 ; 8 ; 45240 ; 140468457854720 ; 1130 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 116 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2029655808 ; 3 ; 45240 ; 140468457854720 ; 1140 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2046441216 ; 6 ; 45240 ; 140468457854720 ; 1150 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 117 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 118 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2021263104 ; 4 ; 45240 ; 140468457854720 ; 1160 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2012870400 ; 3 ; 45240 ; 140468457854720 ; 1170 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 119 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 120 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 121 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1987692288 ; 3 ; 45240 ; 140468457854720 ; 1180 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1979299584 ; 2 ; 45240 ; 140468457854720 ; 1190 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 122 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 2004477696 ; 8 ; 45240 ; 140468457854720 ; 1200 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 123 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+1621172915 ; 1996084992 ; 8 ; 45240 ; 140468457854720 ; 1210 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+1621172915 ; 124 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1970906880 ; 5 ; 45240 ; 140468457854720 ; 1220 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 125 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1954121472 ; 3 ; 45240 ; 140468457854720 ; 1230 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 126 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1962514176 ; 6 ; 45240 ; 140468457854720 ; 1240 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 127 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 128 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1945728768 ; 5 ; 45240 ; 140468457854720 ; 1250 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1928943360 ; 2 ; 45240 ; 140468457854720 ; 1260 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 129 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+1621172915 ; 1912157952 ; 1 ; 45240 ; 140468457854720 ; 1270 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+1621172915 ; 130 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1920550656 ; 4 ; 45240 ; 140468457854720 ; 1280 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1937336064 ; 8 ; 45240 ; 140468457854720 ; 1290 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 131 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 132 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1903765248 ; 4 ; 45240 ; 140468457854720 ; 1300 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 133 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1895372544 ; 4 ; 45240 ; 140468457854720 ; 1310 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 134 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 135 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1861801728 ; 1 ; 45240 ; 140468457854720 ; 1320 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 136 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1878587136 ; 6 ; 45240 ; 140468457854720 ; 1330 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 137 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1886979840 ; 8 ; 45240 ; 140468457854720 ; 1340 ; TSKDN 
+reader_sem_val: 0
+[server] reading from buffer
+1621172915 ; 1870194432 ; 5 ; 45240 ; 140468457854720 ; 1350 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+1621172915 ; 138 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 139 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 140 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 141 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1845016320 ; 5 ; 45240 ; 140468457854720 ; 1360 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1853409024 ; 7 ; 45240 ; 140468457854720 ; 1370 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1828230912 ; 3 ; 45240 ; 140468457854720 ; 1380 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 142 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1811445504 ; 3 ; 45240 ; 140468457854720 ; 1390 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 143 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1819838208 ; 6 ; 45240 ; 140468457854720 ; 1400 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 144 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1836623616 ; 9 ; 45240 ; 140468457854720 ; 1410 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 145 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1803052800 ; 5 ; 45240 ; 140468457854720 ; 1420 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 146 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1777874688 ; 3 ; 45240 ; 140468457854720 ; 1430 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 147 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 148 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1794660096 ; 9 ; 45240 ; 140468457854720 ; 1440 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 149 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 150 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1786267392 ; 9 ; 45240 ; 140468457854720 ; 1450 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 151 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 152 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1769481984 ; 9 ; 45240 ; 140468457854720 ; 1460 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1752696576 ; 6 ; 45240 ; 140468457854720 ; 1470 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1735911168 ; 4 ; 45240 ; 140468457854720 ; 1480 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1761089280 ; 8 ; 45240 ; 140468457854720 ; 1490 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 153 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 154 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172915 ; 155 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1744303872 ; 9 ; 45240 ; 140468457854720 ; 1500 ; TSKDN 
+reader_sem_val: 0
+1621172915 ; 156 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172915 ; 1727518464 ; 8 ; 45240 ; 140468457854720 ; 1510 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1719125760 ; 7 ; 45240 ; 140468457854720 ; 1520 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 157 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1702340352 ; 6 ; 45240 ; 140468457854720 ; 1530 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1693947648 ; 5 ; 45240 ; 140468457854720 ; 1540 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1710733056 ; 8 ; 45240 ; 140468457854720 ; 1550 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1610610432 ; 4 ; 45240 ; 140468457854720 ; 1560 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 158 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 159 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1602217728 ; 4 ; 45240 ; 140468457854720 ; 1570 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 160 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1577039616 ; 1 ; 45240 ; 140468457854720 ; 1580 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1585432320 ; 3 ; 45240 ; 140468457854720 ; 1590 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 161 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 162 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1593825024 ; 8 ; 45240 ; 140468457854720 ; 1600 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 163 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 164 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1551861504 ; 3 ; 45240 ; 140468457854720 ; 1610 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 165 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1535076096 ; 1 ; 45240 ; 140468457854720 ; 1620 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1560254208 ; 6 ; 45240 ; 140468457854720 ; 1630 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 166 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1568646912 ; 9 ; 45240 ; 140468457854720 ; 1640 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 167 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1543468800 ; 7 ; 45240 ; 140468457854720 ; 1650 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 168 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1526683392 ; 5 ; 45240 ; 140468457854720 ; 1660 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 169 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 170 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1518290688 ; 7 ; 45240 ; 140468457854720 ; 1670 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1493112576 ; 2 ; 45240 ; 140468457854720 ; 1680 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 171 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1509897984 ; 6 ; 45240 ; 140468457854720 ; 1690 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1484719872 ; 1 ; 45240 ; 140468457854720 ; 1700 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 172 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1501505280 ; 7 ; 45240 ; 140468457854720 ; 1710 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 173 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1467934464 ; 1 ; 45240 ; 140468457854720 ; 1720 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1476327168 ; 4 ; 45240 ; 140468457854720 ; 1730 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 174 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 175 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1459541760 ; 3 ; 45240 ; 140468457854720 ; 1740 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 176 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 177 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1442756352 ; 3 ; 45240 ; 140468457854720 ; 1750 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 178 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1451149056 ; 6 ; 45240 ; 140468457854720 ; 1760 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 179 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 180 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 181 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 182 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1425970944 ; 7 ; 45240 ; 140468457854720 ; 1770 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1434363648 ; 9 ; 45240 ; 140468457854720 ; 1780 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1417578240 ; 6 ; 45240 ; 140468457854720 ; 1790 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 183 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 184 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1400792832 ; 4 ; 45240 ; 140468457854720 ; 1800 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 185 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1409185536 ; 8 ; 45240 ; 140468457854720 ; 1810 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 186 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+1621172916 ; 1367222016 ; 2 ; 45240 ; 140468457854720 ; 1820 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1384007424 ; 5 ; 45240 ; 140468457854720 ; 1830 ; TSKDN 
+reader_sem_val: 0
+[server] reading from buffer
+1621172916 ; 1375614720 ; 4 ; 45240 ; 140468457854720 ; 1840 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+1621172916 ; 187 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 188 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1392400128 ; 9 ; 45240 ; 140468457854720 ; 1850 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1342043904 ; 2 ; 45240 ; 140468457854720 ; 1860 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 189 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 190 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1333651200 ; 3 ; 45240 ; 140468457854720 ; 1870 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 191 ; 8 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1350436608 ; 7 ; 45240 ; 140468457854720 ; 1880 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1358829312 ; 9 ; 45240 ; 140468457854720 ; 1890 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 192 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 193 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1325258496 ; 6 ; 45240 ; 140468457854720 ; 1900 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 194 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1316865792 ; 6 ; 45240 ; 140468457854720 ; 1910 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1300080384 ; 3 ; 45240 ; 140468457854720 ; 1920 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1291687680 ; 2 ; 45240 ; 140468457854720 ; 1930 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 195 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1283294976 ; 1 ; 45240 ; 140468457854720 ; 1940 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 196 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1308473088 ; 8 ; 45240 ; 140468457854720 ; 1950 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 197 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1274902272 ; 3 ; 45240 ; 140468457854720 ; 1960 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 198 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 199 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 200 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 201 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1249724160 ; 5 ; 45240 ; 140468457854720 ; 1970 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1241331456 ; 4 ; 45240 ; 140468457854720 ; 1980 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 202 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1266509568 ; 9 ; 45240 ; 140468457854720 ; 1990 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 203 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1258116864 ; 9 ; 45240 ; 140468457854720 ; 2000 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 204 ; 3 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1232938752 ; 5 ; 45240 ; 140468457854720 ; 2010 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1216153344 ; 3 ; 45240 ; 140468457854720 ; 2020 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 205 ; 9 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1207760640 ; 3 ; 45240 ; 140468457854720 ; 2030 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 206 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1224546048 ; 7 ; 45240 ; 140468457854720 ; 2040 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1199367936 ; 3 ; 45240 ; 140468457854720 ; 2050 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 207 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1182582528 ; 2 ; 45240 ; 140468457854720 ; 2060 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 208 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 209 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 210 ; 5 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1190975232 ; 9 ; 45240 ; 140468457854720 ; 2070 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1165797120 ; 4 ; 45240 ; 140468457854720 ; 2080 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1157404416 ; 2 ; 45240 ; 140468457854720 ; 2090 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 211 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1174189824 ; 7 ; 45240 ; 140468457854720 ; 2100 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 212 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+1621172916 ; 1140619008 ; 1 ; 45240 ; 140468457854720 ; 2110 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+1621172916 ; 213 ; 6 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1149011712 ; 5 ; 45240 ; 140468457854720 ; 2120 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 214 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+1621172916 ; 215 ; 2 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1132226304 ; 4 ; 45240 ; 140468457854720 ; 2130 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1115440896 ; 1 ; 45240 ; 140468457854720 ; 2140 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 216 ; 7 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172916 ; 1107048192 ; 2 ; 45240 ; 140468457854720 ; 2150 ; TSKDN 
+reader_sem_val: 0
+1621172916 ; 217 ; 1 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] reading from buffer
+1621172916 ; 1123833600 ; 6 ; 45240 ; 140468457854720 ; 2160 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+1621172916 ; 218 ; 4 ; 45240 ; 140468457858880 ; -1 ; RECVD 
+[server] writing to buffer
+[server] reading from buffer
+1621172917 ; 1090262784 ; 1 ; 45240 ; 140468457854720 ; 2170 ; TSKDN 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172917 ; 1098655488 ; 7 ; 45240 ; 140468457854720 ; -1 ; 2LATE 
+reader_sem_val: 0
+[server] writing to buffer
+[server] reading from buffer
+1621172917 ; 1081870080 ; 4 ; 45240 ; 140468457854720 ; -1 ; 2LATE 
+reader_sem_val: 0

@@ -65,7 +65,7 @@ void * thread_producer(void* a){
     request = (Message *) a;
     int res = task(request->tskload);
     request->tskres = res;
-    //register_op(request->rid, request->tskload, request->tskres, TSKEX);
+    register_op(request->rid, request->tskload, request->tskres, TSKEX);
 
     write_to_buff(circ_buffer, request);
 
@@ -101,15 +101,8 @@ void * thread_consumer(void *a){
             register_op(request->tid, request->tskload, request->tskres, FAILD);
 		    perror("[server] open clientfifo");
             fprintf(stderr, "%s\n", clientfifoname);
-		    if (finish)	// server timeout!
-            {
-                register_op(request->tid, request->tskload, request->tskres, FAILD);
-			    break;
-            }
+			break;
 	    }
-
-        if(finish)
-            request->tskres = -1;
 
         int w = 0;
         while((w =write(clientfifo,request,sizeof(Message))) <= 0){
@@ -119,9 +112,7 @@ void * thread_consumer(void *a){
 
         close(clientfifo);
 
-        if(w < 0)
-            register_op(request->tid, request->tskload, request->tskres, FAILD);
-        else if(!finish)
+        if(!finish)
             register_op(request->tid, request->tskload, request->tskres, TSKDN);
         else
             register_op(request->tid, request->tskload, -1, TOOLATE);
@@ -198,7 +189,6 @@ int main(int argc, char** argv){
 
         usleep(10000);
 
-
     }
 timetoclose:
     fprintf(stderr, "[server] stopped receiving requests\n");
@@ -212,8 +202,6 @@ timetoclose:
     unlink(serverfifoname);
 
 	fprintf(stderr, "[server] main terminating\n");
-
-    sleep(10);
 
     free(circ_buffer);
 	pthread_exit(NULL);
