@@ -59,6 +59,7 @@ int read_from_buff(circular_buff * circ_buff, Message * message);
 sem_t reader_sem, writer_sem;
 
 int write_count = 0;
+int read_count = 0;
 
 void * thread_producer(void* a){
     Message * request = malloc(sizeof(Message));
@@ -69,10 +70,10 @@ void * thread_producer(void* a){
 
     write_to_buff(circ_buffer, request);
 
-    pthread_mutex_lock(&mut);
-    write_count++;
-    pthread_mutex_unlock(&mut);
-    //free(request);
+    // pthread_mutex_lock(&mut);
+    // write_count++;
+    // pthread_mutex_unlock(&mut);
+    free(request);
 
     fprintf(stderr,"[server] producer thread terminating: %ld\n", pthread_self());
     pthread_exit(a);
@@ -88,8 +89,6 @@ void * thread_consumer(void *a){
 
 	int clientfifo = -1;
 
-    int read_count = 0;
-
     while(1){
         clientfifo = -1;
 
@@ -103,9 +102,12 @@ void * thread_consumer(void *a){
             fprintf(stderr, "%s\n", clientfifoname);
 			break;
 	    }
-
+        if(clientfifo < 0){
+            read_count++;
+            continue;
+        }
         int w = 0;
-        while((w =write(clientfifo,request,sizeof(Message))) <= 0){
+        while((w = write(clientfifo,request,sizeof(Message))) <= 0){
             if(finish)
                 break;
         }
@@ -117,6 +119,7 @@ void * thread_consumer(void *a){
         else
             register_op(request->tid, request->tskload, -1, TOOLATE);
 
+        read_count++;
     }
      
     free(request);
@@ -194,6 +197,8 @@ timetoclose:
     fprintf(stderr, "[server] stopped receiving requests\n");
 
     terminate_threads(tid, count);
+
+    sleep(5);
 
     pthread_cancel(tidd);
 
@@ -307,14 +312,11 @@ int write_to_buff(circular_buff * circ_buff, Message * message){
     circ_buff->write_index = write_index;
 
     sem_post(&reader_sem);
-    printf("[server] writing to buffer\n");
+    fprintf(stderr,"[server] writing to buffer\n");
     return 0;
 }
 
 int read_from_buff(circular_buff * circ_buff, Message * message){
-    int reader_sem_val;
-    sem_getvalue(&reader_sem, &reader_sem_val);
-    printf("reader_sem_val: %d\n", reader_sem_val);
     sem_wait(&reader_sem);
 
     int read_index = circ_buff->read_index;
@@ -325,7 +327,7 @@ int read_from_buff(circular_buff * circ_buff, Message * message){
     circ_buff->read_index = read_index;
 
     sem_post(&writer_sem);
-    printf("[server] reading from buffer\n");
+    fprintf(stderr,"[server] reading from buffer\n");
     return 0;
 }
 
