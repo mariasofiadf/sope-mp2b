@@ -56,22 +56,31 @@ circular_buff * init_circ_buff();
 int write_to_buff(circular_buff * circ_buff, Message * message);
 int read_from_buff(circular_buff * circ_buff, Message * message);
 
+sem_t reader_sem, writer_sem;
+
+int write_count = 0;
 
 void * thread_producer(void* a){
     Message * request = malloc(sizeof(Message));
     request = (Message *) a;
     int res = task(request->tskload);
     request->tskres = res;
-    register_op(request->rid, request->tskload, request->tskres, TSKEX);
+    //register_op(request->rid, request->tskload, request->tskres, TSKEX);
 
-    sem_wait(&sem);
-    while (write_to_buff(circ_buffer, request) && !finish);
-    sem_post(&sem);
+    write_to_buff(circ_buffer, request);
+
+    pthread_mutex_lock(&mut);
+    write_count++;
+    pthread_mutex_unlock(&mut);
     //free(request);
+
+    fprintf(stderr,"[server] producer thread terminating: %ld\n", pthread_self());
     pthread_exit(a);
 }
 
 void * thread_consumer(void *a){
+
+    fprintf(stderr, "[server] consumer thread starting\n");
 
 	Message *request = malloc(sizeof(Message));
 
@@ -79,18 +88,16 @@ void * thread_consumer(void *a){
 
 	int clientfifo = -1;
 
-    while(!finish || circ_buffer->length != 0)
-    {
+    int read_count = 0;
+
+    while(1){
         clientfifo = -1;
 
-        sem_wait(&sem);
-        while(read_from_buff(circ_buffer, request));
-        sem_post(&sem);
+        read_from_buff(circ_buffer, request);
 
         sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
 
-        fprintf(stderr, "[server] consumer thread opening %s\n", clientfifoname);
-        while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {	// 1st time: keep blocking until client opens...
+        while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {
             register_op(request->tid, request->tskload, request->tskres, FAILD);
 		    perror("[server] open clientfifo");
             fprintf(stderr, "%s\n", clientfifoname);
@@ -101,9 +108,6 @@ void * thread_consumer(void *a){
             }
 	    }
 
-        fprintf(stderr, "[server] opened %s\n", clientfifoname);
-
-
         if(finish)
             request->tskres = -1;
 
@@ -113,6 +117,7 @@ void * thread_consumer(void *a){
                 break;
         }
 
+        close(clientfifo);
 
         if(w < 0)
             register_op(request->tid, request->tskload, request->tskres, FAILD);
@@ -122,10 +127,10 @@ void * thread_consumer(void *a){
             register_op(request->tid, request->tskload, -1, TOOLATE);
 
     }
-    
+     
     free(request);
 
-    fprintf(stderr, "[server] consumer thread stoped\n");
+    printf("[server] consumer thread stoped\n");
 
     pthread_exit(a);
 }
@@ -145,18 +150,10 @@ int main(int argc, char** argv){
 
     circ_buffer = init_circ_buff();
 
-    sem_init(&sem,0,1);
-
+    sem_init(&writer_sem,0,buffer_size);
+    sem_init(&reader_sem,0,0);
 
 	pthread_t tidd;
-
-    while (pthread_create(&tidd, NULL, thread_consumer, NULL) != 0) {	// wait till a new thread can be created!
-        perror("[server] server thread");
-        usleep(10000 + (rand() % 10000));
-        if (finish)	// server timeout!
-            goto timetoclose;
-    }
-    usleep(500);
 
     //Open server fifo
     while ((serverfifo = open(serverfifoname, O_RDONLY)) < 0) {	// 1st time: keep blocking until client opens...
@@ -164,6 +161,13 @@ int main(int argc, char** argv){
 		if (finish)	// server timeout!
 			goto timetoclose;
 	}
+
+    while (pthread_create(&tidd, NULL, thread_consumer, NULL) != 0) {	// wait till a new thread can be created!
+        perror("[server] server thread");
+        usleep(10000 + (rand() % 10000));
+        if (finish)	// server timeout!
+            goto timetoclose;
+    }
 
 	pthread_t tid[10000];
     int count = 0;
@@ -178,8 +182,8 @@ int main(int argc, char** argv){
 		        free(request);
                 goto timetoclose;
             }
-            if(finish)
-                goto timetoclose;
+            // if(finish)
+            //     goto timetoclose;
         }
 
         register_op(request->rid, request->tskload, request->tskres, RECVD);
@@ -190,14 +194,18 @@ int main(int argc, char** argv){
             if (finish)	// server timeout!
                 goto timetoclose;
         }
+        count ++;
+
+        usleep(10000);
+
 
     }
 timetoclose:
     fprintf(stderr, "[server] stopped receiving requests\n");
 
-    pthread_join(tidd, NULL);
-
     terminate_threads(tid, count);
+
+    pthread_cancel(tidd);
 
     close(serverfifo);
 
@@ -205,7 +213,7 @@ timetoclose:
 
 	fprintf(stderr, "[server] main terminating\n");
 
-    sleep(5);
+    sleep(10);
 
     free(circ_buffer);
 	pthread_exit(NULL);
@@ -301,9 +309,7 @@ circular_buff * init_circ_buff(){
 }
 
 int write_to_buff(circular_buff * circ_buff, Message * message){
-    if(circ_buff->length == buffer_size){
-        return 1;
-    }
+    sem_wait(&writer_sem);
     
     int write_index = circ_buff->write_index;
     circ_buff->buffer[write_index] = *message;
@@ -311,31 +317,33 @@ int write_to_buff(circular_buff * circ_buff, Message * message){
     write_index++; 
     write_index = write_index%buffer_size;
     circ_buff->write_index = write_index;
-    circ_buff->length++;
 
+    sem_post(&reader_sem);
+    printf("[server] writing to buffer\n");
     return 0;
 }
 
 int read_from_buff(circular_buff * circ_buff, Message * message){
-    if(circ_buff->length == 0){
-        return 1;
-    }
+    int reader_sem_val;
+    sem_getvalue(&reader_sem, &reader_sem_val);
+    printf("reader_sem_val: %d\n", reader_sem_val);
+    sem_wait(&reader_sem);
 
-    
     int read_index = circ_buff->read_index;
     *message = circ_buff->buffer[read_index];
     
     read_index++;
     read_index = read_index%buffer_size;
     circ_buff->read_index = read_index;
-    circ_buff->length--;
 
+    sem_post(&writer_sem);
+    printf("[server] reading from buffer\n");
     return 0;
 }
 
 void terminate_threads(pthread_t * tid, int n){
     for(int i = 0; i < n; i++){
-        pthread_cancel(tid[i]);
+        pthread_join(tid[i], NULL);
     }
 }
 
