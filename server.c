@@ -105,7 +105,7 @@ void * thread_consumer(void *a){
         sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
 
         while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {
-            register_op(request->tid, request->tskload, request->tskres, FAILD);
+            register_op(request->rid, request->tskload, request->tskres, FAILD);
 		    perror("[server] open clientfifo");
             fprintf(stderr, "%s\n", clientfifoname);
 			break;
