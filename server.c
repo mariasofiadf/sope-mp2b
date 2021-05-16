@@ -58,6 +58,7 @@ void join_threads();
 circular_buff * init_circ_buff();
 int write_to_buff(circular_buff * circ_buff, Message * message);
 int read_from_buff(circular_buff * circ_buff, Message * message);
+void wait_empty_buffer();
 
 sem_t reader_sem, writer_sem;
 
@@ -155,6 +156,7 @@ int main(int argc, char** argv){
 
     sem_init(&writer_sem,0,buffer_size);
     sem_init(&reader_sem,0,0);
+    sem_init(&sem,0,1);
 
 	pthread_t tidd;
 
@@ -203,7 +205,7 @@ timetoclose:
 
     join_threads(tid, count);
 
-    sleep(7);
+    wait_empty_buffer();
 
     pthread_cancel(tidd);
 
@@ -280,7 +282,8 @@ int setup_sigpips(){
     return 0;
 }
 
-void alrm(int signo) {
+void alrm(int signo) {    sleep(10);
+
 	finish = 1;
 	fprintf(stderr, "[server] timeout reached: %ld %ld\n", time(NULL), (unsigned long) pthread_self());
 } // alrm()
@@ -333,6 +336,10 @@ int write_to_buff(circular_buff * circ_buff, Message * message){
     write_index = write_index%buffer_size;
     circ_buff->write_index = write_index;
 
+    sem_wait(&sem);
+    circ_buffer->length++;
+    sem_post(&sem);
+
     sem_post(&reader_sem);
     fprintf(stderr,"[server] writing to buffer\n");
     return 0;
@@ -349,6 +356,10 @@ int read_from_buff(circular_buff * circ_buff, Message * message){
     read_index = read_index%buffer_size;
     circ_buff->read_index = read_index;
 
+    sem_wait(&sem);
+    circ_buffer->length--;
+    sem_post(&sem);
+
     sem_post(&writer_sem);
     fprintf(stderr,"[server] reading from buffer\n");
     return 0;
@@ -360,3 +371,13 @@ void join_threads(pthread_t * tid, int n){
     }
 }
 
+void wait_empty_buffer(){
+    int length;
+    do{
+        sem_wait(&sem);
+        length = circ_buffer->length;
+        sem_post(&sem);
+
+        usleep(10000);
+    }while(length > 0);
+}
