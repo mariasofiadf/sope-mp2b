@@ -54,7 +54,7 @@ int setup_sigpips();
 void register_op(int i, int t, int res, enum oper oper);
 void send_to_client(Message * message);
 void * thread_producer(void* a);
-void terminate_threads();
+void join_threads();
 circular_buff * init_circ_buff();
 int write_to_buff(circular_buff * circ_buff, Message * message);
 int read_from_buff(circular_buff * circ_buff, Message * message);
@@ -67,15 +67,17 @@ int read_count = 0;
 void * thread_producer(void* a){
     Message * request = malloc(sizeof(Message));
     request = (Message *) a;
-    int res = task(request->tskload);
-    request->tskres = res;
-    register_op(request->rid, request->tskload, request->tskres, TSKEX);
+    if(!finish){
+        int res = task(request->tskload);
+        request->tskres = res;
+        register_op(request->rid, request->tskload, request->tskres, TSKEX);
+    }
 
     write_to_buff(circ_buffer, request);
 
-    pthread_mutex_lock(&mut);
-    write_count++;
-	pthread_mutex_unlock(&mut);
+    // pthread_mutex_lock(&mut);
+    // write_count++;
+	// pthread_mutex_unlock(&mut);
 
     free(request);
 
@@ -143,11 +145,11 @@ int main(int argc, char** argv){
 
     if(load_args(argc, argv)) return 1;
 
-    if(setup_sigalrm()) exit(2);
+    if(setup_sigalrm()) exit(1);
 
-    if(setup_sigpips()) exit(2);
+    if(setup_sigpips()) exit(1);
 
-    if(mkfifo(serverfifoname,PERM)) exit(2);
+    if(mkfifo(serverfifoname,PERM)) exit(1);
 
     alarm(timeout);
 
@@ -185,8 +187,6 @@ int main(int argc, char** argv){
 		        free(request);
                 goto timetoclose;
             }
-            // if(finish)
-            //     goto timetoclose;
         }
 
         register_op(request->rid, request->tskload, request->tskres, RECVD);
@@ -199,15 +199,13 @@ int main(int argc, char** argv){
         }
         count ++;
 
-        usleep(10000);
-
     }
 timetoclose:
     fprintf(stderr, "[server] stopped receiving requests\n");
 
-    terminate_threads(tid, count);
+    join_threads(tid, count);
 
-    sleep(3);
+    sleep(5);
 
     pthread_cancel(tidd);
 
@@ -218,6 +216,7 @@ timetoclose:
 	fprintf(stderr, "[server] main terminating\n");
 
     free(circ_buffer);
+
 	pthread_exit(NULL);
     return 0;
 }
@@ -241,7 +240,6 @@ int load_args(int argc, char** argv){
         print_usage();
         return 1;
     }
-
 
     return 0;
 }
@@ -318,7 +316,6 @@ void register_op(int i, int t, int res, enum oper oper){
     }
 }
 
-
 circular_buff * init_circ_buff(){
     circular_buff * circ_buff = malloc(sizeof(circular_buff));
     circ_buff->buffer = malloc(buffer_size*sizeof(Message));
@@ -358,7 +355,7 @@ int read_from_buff(circular_buff * circ_buff, Message * message){
     return 0;
 }
 
-void terminate_threads(pthread_t * tid, int n){
+void join_threads(pthread_t * tid, int n){
     for(int i = 0; i < n; i++){
         pthread_join(tid[i], NULL);
     }
