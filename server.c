@@ -115,14 +115,13 @@ void * thread_consumer(void *a){
         }
         int w = 0;
 
-        while((w = write(clientfifo,request,sizeof(Message))) <= 0){
-            if(finish)
-                break;
-        }
+        w = write(clientfifo,request,sizeof(Message));
 
         close(clientfifo);
 
-        if(request->tskres != -1)
+        if(w < 0)
+            register_op(request->tid, request->tskload, request->tskres, FAILD);
+        else if(request->tskres != -1)
             register_op(request->tid, request->tskload, request->tskres, TSKDN);
         else
             register_op(request->tid, request->tskload, -1, TOOLATE);
@@ -204,7 +203,7 @@ timetoclose:
 
     join_threads(tid, count);
 
-    sleep(5);
+    sleep(7);
 
     pthread_cancel(tidd);
 
