@@ -120,11 +120,11 @@ void * thread_consumer(void *a){
         close(clientfifo);
 
         if(w < 0)
-            register_op(request->tid, request->tskload, request->tskres, FAILD);
+            register_op(request->rid, request->tskload, request->tskres, FAILD);
         else if(request->tskres != -1)
-            register_op(request->tid, request->tskload, request->tskres, TSKDN);
+            register_op(request->rid, request->tskload, request->tskres, TSKDN);
         else
-            register_op(request->tid, request->tskload, -1, TOOLATE);
+            register_op(request->rid, request->tskload, -1, TOOLATE);
 
         read_count++;
     }
@@ -328,7 +328,7 @@ int write_to_buff(circular_buff * circ_buff, Message * message){
     
     int write_index = circ_buff->write_index;
     circ_buff->buffer[write_index] = *message;
-    
+
     write_index++; 
     write_index = write_index%buffer_size;
     circ_buff->write_index = write_index;
@@ -342,6 +342,7 @@ int read_from_buff(circular_buff * circ_buff, Message * message){
     sem_wait(&reader_sem);
 
     int read_index = circ_buff->read_index;
+
     *message = circ_buff->buffer[read_index];
     
     read_index++;
