@@ -104,13 +104,18 @@ void * thread_consumer(void *a){
 
         sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
 
+
+        int try = 0;
         while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {
-            register_op(request->rid, request->tskload, -1, FAILD);
 		    perror("[server] open clientfifo");
             fprintf(stderr, "%s\n", clientfifoname);
-			break;
+			if(try > 10)
+                break;
+            try++;
+            usleep(1000);
 	    }
         if(clientfifo < 0){
+            register_op(request->rid, request->tskload, -1, FAILD);
             read_count++;
             continue;
         }
@@ -120,12 +125,12 @@ void * thread_consumer(void *a){
 
         close(clientfifo);
 
-        if(w < 0)
-            register_op(request->rid, request->tskload, -1, FAILD);
-        else if(request->tskres != -1)
-            register_op(request->rid, request->tskload, request->tskres, TSKDN);
-        else
+        if(request->tskres == -1)
             register_op(request->rid, request->tskload, -1, TOOLATE);
+        else if(w < 0)
+            register_op(request->rid, request->tskload, -1, FAILD);
+        else
+            register_op(request->rid, request->tskload, request->tskres, TSKDN);
 
         read_count++;
     }
@@ -191,11 +196,17 @@ int main(int argc, char** argv){
 
         register_op(request->rid, request->tskload, request->tskres, RECVD);
 
-        while (pthread_create(&tid[count], NULL, thread_producer, request) != 0) {	// wait till a new thread can be created!
-            perror("[server] server thread");
-            usleep(10000 + (rand() % 10000));
-            if (finish)	// server timeout!
-                goto timetoclose;
+        if(!finish){
+            while (pthread_create(&tid[count], NULL, thread_producer, request) != 0) {	// wait till a new thread can be created!
+                perror("[server] server thread");
+                usleep(10000 + (rand() % 10000));
+                if (finish)	// server timeout!
+                    goto timetoclose;
+            }
+        }
+        else{
+            request->tskres = -1;
+            write_to_buff(circ_buffer, request);
         }
 
         usleep(1000);
