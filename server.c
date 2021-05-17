@@ -105,7 +105,7 @@ void * thread_consumer(void *a){
         sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
 
         while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {
-            register_op(request->rid, request->tskload, request->tskres, FAILD);
+            register_op(request->rid, request->tskload, -1, FAILD);
 		    perror("[server] open clientfifo");
             fprintf(stderr, "%s\n", clientfifoname);
 			break;
@@ -121,7 +121,7 @@ void * thread_consumer(void *a){
         close(clientfifo);
 
         if(w < 0)
-            register_op(request->rid, request->tskload, request->tskres, FAILD);
+            register_op(request->rid, request->tskload, -1, FAILD);
         else if(request->tskres != -1)
             register_op(request->rid, request->tskload, request->tskres, TSKDN);
         else
@@ -197,6 +197,8 @@ int main(int argc, char** argv){
             if (finish)	// server timeout!
                 goto timetoclose;
         }
+
+        usleep(1000);
         count ++;
 
     }
