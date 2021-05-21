@@ -176,8 +176,7 @@ int main(int argc, char** argv){
                 goto timetoclose;
             }
         }
-        int id = request->rid;
-        register_op(id, request->tskload, request->tskres, RECVD);
+        register_op(request->rid, request->tskload, request->tskres, RECVD);
 
         if(!finish){
             while (pthread_create(&tid[count], NULL, thread_producer, request) != 0) {	// wait till a new thread can be created!
