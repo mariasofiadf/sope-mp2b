@@ -106,13 +106,13 @@ void * thread_consumer(void *a){
         }
         int w = 0;
 
-        w = write(clientfifo,request,sizeof(Message));
+        while((w = write(clientfifo,request,sizeof(Message))) <= 0);
 
         close(clientfifo);
 
         if(request->tskres == -1)
             register_op(request->rid, request->tskload, -1, TOOLATE);
-        else if(w < 0)
+        else if(w <= 0)
             register_op(request->rid, request->tskload, -1, FAILD);
         else
             register_op(request->rid, request->tskload, request->tskres, TSKDN);
@@ -167,23 +167,17 @@ int main(int argc, char** argv){
 
     while(!finish || !serverfifoclosed){
 
-        while ((serverfifo = open(serverfifoname, O_RDONLY)) < 0) {	// 1st time: keep blocking until client opens...
-            perror("[server] server, open serverfifo");
-            if (finish)	// server timeout!
-                goto timetoclose;
-	    }
-
         Message *request = malloc(sizeof(Message));
         int r;
         while((r = read(serverfifo,request,sizeof(Message))) <= 0){
-            //if(r == 0){
+            if(r == 0){
 		        perror("[server] read serverfifo");
 		        free(request);
                 goto timetoclose;
-            //}
+            }
         }
-
-        register_op(request->rid, request->tskload, request->tskres, RECVD);
+        int id = request->rid;
+        register_op(id, request->tskload, request->tskres, RECVD);
 
         if(!finish){
             while (pthread_create(&tid[count], NULL, thread_producer, request) != 0) {	// wait till a new thread can be created!
