@@ -182,6 +182,7 @@ timetoclose:
 	// strategy: 1 2
 	// 1 - break all blocked threads with pthread_cancel() and assure GAVEUP messages
 		// como saber os thr_ids? percorrendo /tmp/[pid].* !
+	//sleep(5);
 	terminate_blocked(getpid());
 	// 2 - assure that all private FIFOs are removed
 	char rm[256] = {'\0'};

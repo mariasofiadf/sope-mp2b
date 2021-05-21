@@ -35,8 +35,6 @@ pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 char *serverfifoname = NULL;
 int serverfifo = -1;
 
-sem_t sem;
-
 enum oper{
     RECVD,
     TSKEX,
@@ -62,22 +60,15 @@ void wait_empty_buffer();
 
 sem_t reader_sem, writer_sem;
 
-int write_count = 0;
-int read_count = 0;
-
 void * thread_producer(void* a){
 
     fprintf(stderr,"[server] producer thread starting: %ld\n", pthread_self());
     Message * request = malloc(sizeof(Message));
     request = (Message *) a;
-    if(!finish){
-        int res = task(request->tskload);
-        request->tskres = res;
-        register_op(request->rid, request->tskload, request->tskres, TSKEX);
-    }
-    else{
-        request->tskres = -1;
-    }
+
+    int res = task(request->tskload);
+    request->tskres = res;
+    register_op(request->rid, request->tskload, request->tskres, TSKEX);
 
     write_to_buff(circ_buffer, request);
 
@@ -95,7 +86,7 @@ void * thread_consumer(void *a){
 
     char clientfifoname[CONFORTSIZE];
 
-	int clientfifo = -1;
+	int clientfifo;
 
     while(1){
         clientfifo = -1;
@@ -104,19 +95,13 @@ void * thread_consumer(void *a){
 
         sprintf(clientfifoname, "/tmp/%d.%lu", request->pid, (unsigned long) request->tid);
 
-
-        int try = 0;
         while ((clientfifo = open(clientfifoname, O_WRONLY)) < 0) {
 		    perror("[server] open clientfifo");
             fprintf(stderr, "%s\n", clientfifoname);
-			if(try > 10)
-                break;
-            try++;
-            usleep(1000);
+            break;
 	    }
         if(clientfifo < 0){
             register_op(request->rid, request->tskload, -1, FAILD);
-            read_count++;
             continue;
         }
         int w = 0;
@@ -132,7 +117,6 @@ void * thread_consumer(void *a){
         else
             register_op(request->rid, request->tskload, request->tskres, TSKDN);
 
-        read_count++;
     }
      
     free(request);
@@ -161,7 +145,6 @@ int main(int argc, char** argv){
 
     sem_init(&writer_sem,0,buffer_size);
     sem_init(&reader_sem,0,0);
-    sem_init(&sem,0,1);
 
 	pthread_t tidd;
 
@@ -184,14 +167,20 @@ int main(int argc, char** argv){
 
     while(!finish || !serverfifoclosed){
 
+        while ((serverfifo = open(serverfifoname, O_RDONLY)) < 0) {	// 1st time: keep blocking until client opens...
+            perror("[server] server, open serverfifo");
+            if (finish)	// server timeout!
+                goto timetoclose;
+	    }
+
         Message *request = malloc(sizeof(Message));
         int r;
         while((r = read(serverfifo,request,sizeof(Message))) <= 0){
-            if(r == 0){
+            //if(r == 0){
 		        perror("[server] read serverfifo");
 		        free(request);
                 goto timetoclose;
-            }
+            //}
         }
 
         register_op(request->rid, request->tskload, request->tskres, RECVD);
@@ -209,7 +198,7 @@ int main(int argc, char** argv){
             write_to_buff(circ_buffer, request);
         }
 
-        usleep(1000);
+        //usleep(1000);
         count ++;
 
     }
@@ -349,9 +338,9 @@ int write_to_buff(circular_buff * circ_buff, Message * message){
     write_index = write_index%buffer_size;
     circ_buff->write_index = write_index;
 
-    sem_wait(&sem);
+	pthread_mutex_lock(&mut);
     circ_buffer->length++;
-    sem_post(&sem);
+	pthread_mutex_unlock(&mut);
 
     sem_post(&reader_sem);
     fprintf(stderr,"[server] writing to buffer\n");
@@ -369,9 +358,9 @@ int read_from_buff(circular_buff * circ_buff, Message * message){
     read_index = read_index%buffer_size;
     circ_buff->read_index = read_index;
 
-    sem_wait(&sem);
+	pthread_mutex_lock(&mut);
     circ_buffer->length--;
-    sem_post(&sem);
+	pthread_mutex_unlock(&mut);
 
     sem_post(&writer_sem);
     fprintf(stderr,"[server] reading from buffer\n");
@@ -387,10 +376,11 @@ void join_threads(pthread_t * tid, int n){
 void wait_empty_buffer(){
     int length;
     do{
-        sem_wait(&sem);
+        
+	    pthread_mutex_lock(&mut);
         length = circ_buffer->length;
-        sem_post(&sem);
-
+        pthread_mutex_unlock(&mut);
+        
         usleep(10000);
     }while(length > 0);
 }
